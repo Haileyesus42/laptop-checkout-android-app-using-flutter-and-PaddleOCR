@@ -1,0 +1,51 @@
+name: laptop_checkout
+description: Secure OCR and Admin management mobile client.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # UI & Icons
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.10
+  google_fonts: ^6.2.1
+
+  # Security & State
+  flutter_secure_storage: ^9.0.0 # For storing tokens/sensitive data
+  flutter_riverpod: ^2.5.1      # Recommended for state management
+
+  # Scanner & OCR (We will use a platform channel for raw PaddleOCR)
+  camera: ^0.11.0
+  path_provider: ^2.1.2
+  image: ^4.2.0
+  supabase_flutter: ^2.12.0
+  intl: 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: ^2.10.5
+
+flutter:
+  uses-material-design: true
+
+  # Asset Registration
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/models/ # For PaddleOCR weights (.nb or .onnx)
+
+  # Font Registration
+  # fonts:
+  #   - family: Nyala
+  #     fonts:
+  #       - asset: assets/fonts/Nyala-Regular.ttf
+  #   - family: AbyssinicaSIL
+  #     fonts:
+  #       - asset: assets/fonts/AbyssinicaSIL-Regular.ttf
