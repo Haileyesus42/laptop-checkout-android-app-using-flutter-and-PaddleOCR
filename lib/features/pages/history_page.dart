@@ -10,7 +10,7 @@ class HistoryPage extends StatefulWidget {
 class _HistoryPageState extends State<HistoryPage> {
   int _expandedIndex = -1; // -1 means no item is expanded
 
-  // Sample data with complete information
+  // Sample data with Amharic status labels
   final List<Map<String, dynamic>> _historyItems = [
     {
       'id': 1,
@@ -22,8 +22,8 @@ class _HistoryPageState extends State<HistoryPage> {
       'laptopSerial': 'SN-ABC123XYZ',
       'laptopBrand': 'Dell',
       'laptopModel': 'XPS 13',
-      'laptopType': 'Ultrabook',
-      'status': 'Verified',
+      'laptopType': 'አልትራቡክ', // Ultrabook
+      'status': 'የተረጋገጠ', // Verified
       'statusColor': Colors.green,
       'scannedBy': 'Gatekeeper 1',
       'registrationDate': '2024-01-10',
@@ -38,8 +38,8 @@ class _HistoryPageState extends State<HistoryPage> {
       'laptopSerial': 'SN-DEF456UVW',
       'laptopBrand': 'HP',
       'laptopModel': 'Spectre x360',
-      'laptopType': 'Convertible',
-      'status': 'Mismatch',
+      'laptopType': 'ተለዋጭ (ኮንቨርትብል)', // Convertible
+      'status': 'አይዛመድም', // Mismatch
       'statusColor': Colors.red,
       'scannedBy': 'Gatekeeper 2',
       'registrationDate': '2024-01-12',
@@ -54,8 +54,8 @@ class _HistoryPageState extends State<HistoryPage> {
       'laptopSerial': 'SN-GHI789RST',
       'laptopBrand': 'Apple',
       'laptopModel': 'MacBook Pro 14"',
-      'laptopType': 'MacBook',
-      'status': 'Verified',
+      'laptopType': 'ማክቡክ', // MacBook
+      'status': 'የተረጋገጠ', // Verified
       'statusColor': Colors.green,
       'scannedBy': 'Gatekeeper 1',
       'registrationDate': '2024-01-08',
@@ -70,8 +70,8 @@ class _HistoryPageState extends State<HistoryPage> {
       'laptopSerial': 'SN-JKL012MNO',
       'laptopBrand': 'Lenovo',
       'laptopModel': 'ThinkPad X1 Carbon',
-      'laptopType': 'Laptop',
-      'status': 'Verified',
+      'laptopType': 'ላፕቶፕ', // Laptop
+      'status': 'የተረጋገጠ', // Verified
       'statusColor': Colors.green,
       'scannedBy': 'Gatekeeper 3',
       'registrationDate': '2024-01-14',
@@ -86,8 +86,8 @@ class _HistoryPageState extends State<HistoryPage> {
       'laptopSerial': 'SN-PQR345TUV',
       'laptopBrand': 'Asus',
       'laptopModel': 'ROG Zephyrus',
-      'laptopType': 'Gaming Laptop',
-      'status': 'Mismatch',
+      'laptopType': 'የጨዋታ ላፕቶፕ', // Gaming Laptop
+      'status': 'አይዛመድም', // Mismatch
       'statusColor': Colors.red,
       'scannedBy': 'Gatekeeper 1',
       'registrationDate': '2024-01-11',
@@ -102,8 +102,8 @@ class _HistoryPageState extends State<HistoryPage> {
       'laptopSerial': 'SN-WXY678ZAB',
       'laptopBrand': 'Microsoft',
       'laptopModel': 'Surface Laptop 5',
-      'laptopType': 'Laptop',
-      'status': 'Verified',
+      'laptopType': 'ላፕቶፕ', // Laptop
+      'status': 'የተረጋገጠ', // Verified
       'statusColor': Colors.green,
       'scannedBy': 'Gatekeeper 2',
       'registrationDate': '2024-01-09',
@@ -121,7 +121,7 @@ class _HistoryPageState extends State<HistoryPage> {
           children: [
             const SizedBox(height: 10),
 
-            // Statistics
+            // Statistics (አኃዛዊ መረጃ)
             Container(
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.only(bottom: 16),
@@ -132,20 +132,21 @@ class _HistoryPageState extends State<HistoryPage> {
               ),
               child: Row(
                 children: [
-                  _buildStatItem(
-                      'Total Scans', '147', Icons.qr_code_scanner_rounded),
-                  Container(width: 1, height: 40, color: Colors.grey[300]),
-                  _buildStatItem('Matches', '139', Icons.check_circle_rounded),
+                  _buildStatItem('ጠቅላላ ቅኝቶች', '147',
+                      Icons.qr_code_scanner_rounded), // Total Scans
                   Container(width: 1, height: 40, color: Colors.grey[300]),
                   _buildStatItem(
-                      'Mismatches', '8', Icons.warning_amber_rounded),
+                      'የተዛመዱ', '139', Icons.check_circle_rounded), // Matches
+                  Container(width: 1, height: 40, color: Colors.grey[300]),
+                  _buildStatItem(
+                      'ያልተዛመዱ', '8', Icons.warning_amber_rounded), // Mismatches
                 ],
               ),
             ),
 
             const SizedBox(height: 16),
 
-            // History List
+            // History List (የቅኝት ታሪክ)
             Expanded(
               child: ListView.builder(
                 itemCount: _historyItems.length,
@@ -157,9 +158,9 @@ class _HistoryPageState extends State<HistoryPage> {
                     onTap: () {
                       setState(() {
                         if (_expandedIndex == index) {
-                          _expandedIndex = -1; // Collapse if already expanded
+                          _expandedIndex = -1; // Collapse
                         } else {
-                          _expandedIndex = index; // Expand this item
+                          _expandedIndex = index; // Expand
                         }
                       });
                     },
@@ -262,7 +263,10 @@ class _HistoryPageState extends State<HistoryPage> {
                                       child: Row(
                                         children: [
                                           Icon(
-                                            item['status'] == 'Verified'
+                                            // Decide icon based on color (green = check, red = warning)
+                                            (item['statusColor'] as Color)
+                                                        .value ==
+                                                    Colors.green.value
                                                 ? Icons.check
                                                 : Icons.warning_amber,
                                             size: 12,
@@ -299,50 +303,62 @@ class _HistoryPageState extends State<HistoryPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  // Student Information Section
+                                  // የተማሪ መረጃ (Student Information)
                                   _buildDetailSection(
-                                    title: 'Student Information',
+                                    title: 'የተማሪ መረጃ',
                                     children: [
-                                      _buildDetailRow('Full Name',
-                                          item['studentName'] ?? ''),
-                                      _buildDetailRow('Student ID',
-                                          item['studentId'] ?? ''),
-                                      _buildDetailRow('Department',
-                                          item['department'] ?? ''),
-                                      _buildDetailRow('Registration Date',
-                                          item['registrationDate'] ?? ''),
+                                      _buildDetailRow(
+                                          'ሙሉ ስም',
+                                          item['studentName'] ??
+                                              ''), // Full Name
+                                      _buildDetailRow(
+                                          'የተማሪ መታወቂያ',
+                                          item['studentId'] ??
+                                              ''), // Student ID
+                                      _buildDetailRow(
+                                          'ክፍል',
+                                          item['department'] ??
+                                              ''), // Department
+                                      _buildDetailRow(
+                                          'የምዝገባ ቀን',
+                                          item['registrationDate'] ??
+                                              ''), // Registration Date
                                     ],
                                   ),
                                   const SizedBox(height: 16),
 
-                                  // Laptop Information Section
+                                  // የላፕቶፕ መረጃ (Laptop Information)
                                   _buildDetailSection(
-                                    title: 'Laptop Information',
+                                    title: 'የላፕቶፕ መረጃ',
                                     children: [
-                                      _buildDetailRow('Serial Number',
-                                          item['laptopSerial'] ?? ''),
                                       _buildDetailRow(
-                                          'Brand', item['laptopBrand'] ?? ''),
-                                      _buildDetailRow(
-                                          'Model', item['laptopModel'] ?? ''),
-                                      _buildDetailRow(
-                                          'Type', item['laptopType'] ?? ''),
+                                          'ተከታታይ ቁጥር',
+                                          item['laptopSerial'] ??
+                                              ''), // Serial Number
+                                      _buildDetailRow('ብራንድ',
+                                          item['laptopBrand'] ?? ''), // Brand
+                                      _buildDetailRow('ሞዴል',
+                                          item['laptopModel'] ?? ''), // Model
+                                      _buildDetailRow('አይነት',
+                                          item['laptopType'] ?? ''), // Type
                                     ],
                                   ),
                                   const SizedBox(height: 16),
 
-                                  // Scan Information Section
+                                  // የቅኝት መረጃ (Scan Information)
                                   _buildDetailSection(
-                                    title: 'Scan Information',
+                                    title: 'የቅኝት መረጃ',
                                     children: [
                                       _buildDetailRow(
-                                          'Date', item['date'] ?? ''),
+                                          'ቀን', item['date'] ?? ''), // Date
                                       _buildDetailRow(
-                                          'Time', item['time'] ?? ''),
-                                      _buildDetailRow('Scanned By',
-                                          item['scannedBy'] ?? ''),
+                                          'ሰዓት', item['time'] ?? ''), // Time
                                       _buildDetailRow(
-                                        'Status',
+                                          'በቃኘው',
+                                          item['scannedBy'] ??
+                                              ''), // Scanned By
+                                      _buildDetailRow(
+                                        'ሁኔታ', // Status
                                         item['status'] ?? '',
                                         valueColor:
                                             item['statusColor'] as Color,

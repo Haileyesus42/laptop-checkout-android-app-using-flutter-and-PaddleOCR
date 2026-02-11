@@ -86,6 +86,40 @@ class _ProfilePageState extends State<ProfilePage> {
     _startShiftTimer();
   }
 
+  void _logout() async {
+    bool confirm = await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text("Logout"),
+            content: const Text("Are you sure you want to logout?"),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: const Text("Cancel"),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: const Text(
+                  "Logout",
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+            ],
+          ),
+        ) ??
+        false;
+
+    if (confirm) {
+      // Cancel shift timer if running
+      _shiftTimer?.cancel();
+
+      // Call logout from auth service
+      await authService.signOut();
+
+      // The AuthGate stream will automatically handle redirection to login
+    }
+  }
+
   String _getShiftDuration() {
     if (_shiftStartTime == null) return "00:00:00";
 
@@ -373,6 +407,7 @@ class _ProfilePageState extends State<ProfilePage> {
             // Shift Summary
             Container(
               padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
                 color: Colors.grey[50],
                 borderRadius: BorderRadius.circular(12),
@@ -434,6 +469,46 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                 ],
+              ),
+            ),
+
+            // Logout Button
+            Container(
+              width: double.infinity,
+              height: 48,
+              margin: const EdgeInsets.only(top: 8),
+              child: ElevatedButton(
+                onPressed: _logout,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: BorderSide(
+                      color: Colors.red.shade300,
+                      width: 1.5,
+                    ),
+                  ),
+                  elevation: 0,
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.logout_rounded,
+                      size: 18,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      'LOGOUT',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

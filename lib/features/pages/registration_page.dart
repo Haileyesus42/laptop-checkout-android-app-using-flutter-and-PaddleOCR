@@ -26,12 +26,12 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
   String? _selectedLaptopType;
 
   final List<String> _laptopTypes = [
-    'Laptop',
-    'Ultrabook',
-    'Gaming Laptop',
-    'Convertible',
-    'Chromebook',
-    'MacBook'
+    'ላፕቶፕ',
+    'ኡልትራቡክ',
+    'የጨዋታ ላፕቶፕ',
+    'ኮንቬርቲብል',
+    'ክሮምቡክ',
+    'ማክቡክ'
   ];
 
   @override
@@ -67,7 +67,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: const Text('Student registered successfully'),
+              content: const Text('ተማሪው በተሳካ ሁኔታ ተመዝግቧል'),
               backgroundColor: Colors.green[800],
               duration: const Duration(seconds: 2),
             ),
@@ -83,7 +83,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Registration failed: ${e.toString()}'),
+              content: Text('ምዝገባ አልተሳካም: ${e.toString()}'),
               backgroundColor: Colors.red,
             ),
           );
@@ -126,7 +126,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                               color: Color(0xFF003366), size: 18),
                           SizedBox(width: 8),
                           Text(
-                            'STUDENT INFORMATION',
+                            'የተማሪ መረጃ',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
@@ -140,13 +140,13 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
 
                       // Student Name
                       _buildCompactTextField(
-                        label: 'Full Name',
-                        hint: 'Enter student name',
+                        label: 'ሙሉ ስም',
+                        hint: 'የተማሪ ስም ያስገቡ',
                         controller: _studentNameController,
                         icon: Icons.person_outline,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Required';
+                            return 'ይግባኝ';
                           }
                           return null;
                         },
@@ -155,13 +155,13 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
 
                       // Student ID
                       _buildCompactTextField(
-                        label: 'Student ID',
+                        label: 'የተማሪ መለያ',
                         hint: 'BIT2024001',
                         controller: _studentIdController,
                         icon: Icons.badge_outlined,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Required';
+                            return 'ይግባኝ';
                           }
                           return null;
                         },
@@ -170,13 +170,13 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
 
                       // Department
                       _buildCompactTextField(
-                        label: 'Department',
-                        hint: 'Computer Science',
+                        label: 'ክፍል',
+                        hint: 'ኮምፒውተር ሳይንስ',
                         controller: _departmentController,
                         icon: Icons.school_outlined,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Required';
+                            return 'ይግባኝ';
                           }
                           return null;
                         },
@@ -203,7 +203,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                               color: Color(0xFF003366), size: 18),
                           SizedBox(width: 8),
                           Text(
-                            'LAPTOP INFORMATION',
+                            'የላፕቶፕ መረጃ',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
@@ -217,13 +217,13 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
 
                       // Serial Number (Most Important)
                       _buildCompactTextField(
-                        label: 'Serial Number',
+                        label: 'ተከታታይ ቁጥር',
                         hint: 'SN-ABC123XYZ',
                         controller: _laptopSerialController,
                         icon: Icons.qr_code_rounded,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Required';
+                            return 'ይግባኝ';
                           }
                           return null;
                         },
@@ -235,13 +235,13 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                         children: [
                           Expanded(
                             child: _buildCompactTextField(
-                              label: 'Brand',
-                              hint: 'Dell, HP, etc.',
+                              label: 'ብራንድ',
+                              hint: 'ዴል, ኤችፒ, ወዘተ.',
                               controller: _laptopBrandController,
                               icon: Icons.branding_watermark,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Required';
+                                  return 'ይግባኝ';
                                 }
                                 return null;
                               },
@@ -250,13 +250,13 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                           const SizedBox(width: 12),
                           Expanded(
                             child: _buildCompactTextField(
-                              label: 'Model',
-                              hint: 'XPS 13, etc.',
+                              label: 'ሞዴል',
+                              hint: 'XPS 13, ወዘተ.',
                               controller: _laptopModelController,
                               icon: Icons.model_training,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Required';
+                                  return 'ይግባኝ';
                                 }
                                 return null;
                               },
@@ -268,7 +268,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
 
                       // Laptop Type Dropdown
                       Text(
-                        'Type',
+                        'ዓይነት',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -293,7 +293,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                                 color: Colors.grey, size: 20),
                           ),
                           hint: const Text(
-                            'Select type',
+                            'ዓይነት ይምረጡ',
                             style: TextStyle(fontSize: 14),
                           ),
                           isExpanded: true,
@@ -313,7 +313,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Required';
+                              return 'ይግባኝ';
                             }
                             return null;
                           },
@@ -340,7 +340,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'The serial number is used for campus security verification. Ensure it matches the physical sticker.',
+                          'ተከታታይ ቁጥሩ ለመምህራን የደህንነት ማረጋገጫ ያገለግላል. ከቁራጭ ስቲከሩ ጋር እንደሚዛመድ ያረጋግጡ.',
                           style: TextStyle(
                             color: Colors.blue[900],
                             fontSize: 12,
@@ -378,7 +378,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                               Icon(Icons.person_add_alt_1, size: 18),
                               SizedBox(width: 8),
                               Text(
-                                'REGISTER STUDENT',
+                                'ተማሪ ይመዝግቡ',
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,

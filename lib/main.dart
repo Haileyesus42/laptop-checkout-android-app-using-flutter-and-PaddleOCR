@@ -11,7 +11,7 @@ void main() async {
   await Supabase.initialize(
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxZXVvbHJpb3BzbmxocmRwbmZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcwMDQ3MjgsImV4cCI6MjA4MjU4MDcyOH0.rpTX--OezrMYUZUvyOYMplU-_diFb4Gr6rD9p-nnltc', // Your Supabase anon key
-    url: 'https://uqeuolriopsnlhrdpnfi.supabase.co', // Your Supabase URL
+    url: 'https://uqeuolriopsnlhrdpnfi.supabase.co',
   );
 
   runApp(const ProviderScope(child: LaptopCheckoutApp()));

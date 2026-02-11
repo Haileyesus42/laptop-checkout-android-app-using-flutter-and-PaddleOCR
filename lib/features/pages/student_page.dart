@@ -26,12 +26,12 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
   String? _selectedLaptopType;
 
   final List<String> _laptopTypes = [
-    'Laptop',
-    'Ultrabook',
-    'Gaming Laptop',
-    'Convertible',
-    'Chromebook',
-    'MacBook'
+    'ላፕቶፕ', // Laptop
+    'አልትራቡክ', // Ultrabook
+    'የጨዋታ ላፕቶፕ', // Gaming Laptop
+    'ተለዋጭ (ኮንቨርትብል)', // Convertible
+    'ክሮምቡክ', // Chromebook
+    'ማክቡክ', // MacBook
   ];
 
   @override
@@ -67,7 +67,8 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: const Text('Student registered successfully'),
+              content: const Text(
+                  'ተማሪ በተሳካ ሁኔታ ተመዝግቧል'), // Student registered successfully
               backgroundColor: Colors.green[800],
               duration: const Duration(seconds: 2),
             ),
@@ -87,7 +88,8 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Registration failed: ${e.toString()}'),
+              content: Text(
+                  'መመዝገብ አልተሳካም: ${e.toString()}'), // Registration failed: ...
               backgroundColor: Colors.red,
             ),
           );
@@ -111,7 +113,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Student Information Section
+                  // የተማሪ መረጃ ክፍል (Student Information Section)
                   Container(
                     padding: const EdgeInsets.all(16),
                     margin: const EdgeInsets.only(bottom: 16),
@@ -129,7 +131,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                                 color: Color(0xFF003366), size: 18),
                             SizedBox(width: 8),
                             Text(
-                              'STUDENT INFORMATION',
+                              'የተማሪ መረጃ', // STUDENT INFORMATION
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700,
@@ -141,45 +143,45 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                         ),
                         const SizedBox(height: 16),
 
-                        // Student Name
+                        // ሙሉ ስም (Full Name)
                         _buildCompactTextField(
-                          label: 'Full Name',
-                          hint: 'Enter student name',
+                          label: 'ሙሉ ስም', // Full Name
+                          hint: 'የተማሪ ስም ያስገቡ', // Enter student name
                           controller: _studentNameController,
                           icon: Icons.person_outline,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Required';
+                              return 'አስፈላጊ ነው'; // Required
                             }
                             return null;
                           },
                         ),
                         const SizedBox(height: 12),
 
-                        // Student ID
+                        // የተማሪ መታወቂያ (Student ID)
                         _buildCompactTextField(
-                          label: 'Student ID',
+                          label: 'የተማሪ መታወቂያ', // Student ID
                           hint: 'BIT2024001',
                           controller: _studentIdController,
                           icon: Icons.badge_outlined,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Required';
+                              return 'አስፈላጊ ነው'; // Required
                             }
                             return null;
                           },
                         ),
                         const SizedBox(height: 12),
 
-                        // Department
+                        // ክፍል (Department)
                         _buildCompactTextField(
-                          label: 'Department',
-                          hint: 'Computer Science',
+                          label: 'ክፍል', // Department
+                          hint: 'ኮምፒውተር ሳይንስ', // Computer Science
                           controller: _departmentController,
                           icon: Icons.school_outlined,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Required';
+                              return 'አስፈላጊ ነው'; // Required
                             }
                             return null;
                           },
@@ -188,7 +190,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                     ),
                   ),
 
-                  // Laptop Information Section
+                  // የላፕቶፕ መረጃ ክፍል (Laptop Information Section)
                   Container(
                     padding: const EdgeInsets.all(16),
                     margin: const EdgeInsets.only(bottom: 16),
@@ -206,7 +208,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                                 color: Color(0xFF003366), size: 18),
                             SizedBox(width: 8),
                             Text(
-                              'LAPTOP INFORMATION',
+                              'የላፕቶፕ መረጃ', // LAPTOP INFORMATION
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700,
@@ -218,33 +220,33 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                         ),
                         const SizedBox(height: 16),
 
-                        // Serial Number (Most Important)
+                        // ተከታታይ ቁጥር (Serial Number)
                         _buildCompactTextField(
-                          label: 'Serial Number',
+                          label: 'ተከታታይ ቁጥር', // Serial Number
                           hint: 'SN-ABC123XYZ',
                           controller: _laptopSerialController,
                           icon: Icons.qr_code_rounded,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Required';
+                              return 'አስፈላጊ ነው'; // Required
                             }
                             return null;
                           },
                         ),
                         const SizedBox(height: 12),
 
-                        // Brand & Model
+                        // ብራንድ እና ሞዴል (Brand & Model)
                         Row(
                           children: [
                             Expanded(
                               child: _buildCompactTextField(
-                                label: 'Brand',
-                                hint: 'Dell, HP, etc.',
+                                label: 'ብራንድ', // Brand
+                                hint: 'ዴል፣ ኤችፒ፣ ወዘተ.', // Dell, HP, etc.
                                 controller: _laptopBrandController,
                                 icon: Icons.branding_watermark,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Required';
+                                    return 'አስፈላጊ ነው'; // Required
                                   }
                                   return null;
                                 },
@@ -253,13 +255,13 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                             const SizedBox(width: 12),
                             Expanded(
                               child: _buildCompactTextField(
-                                label: 'Model',
-                                hint: 'XPS 13, etc.',
+                                label: 'ሞዴል', // Model
+                                hint: 'XPS 13, ወዘተ.', // XPS 13, etc.
                                 controller: _laptopModelController,
                                 icon: Icons.model_training,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Required';
+                                    return 'አስፈላጊ ነው'; // Required
                                   }
                                   return null;
                                 },
@@ -269,9 +271,9 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                         ),
                         const SizedBox(height: 12),
 
-                        // Laptop Type Dropdown
+                        // አይነት (Laptop Type Dropdown)
                         Text(
-                          'Type',
+                          'አይነት', // Type
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
@@ -296,7 +298,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                                   color: Colors.grey, size: 20),
                             ),
                             hint: const Text(
-                              'Select type',
+                              'አይነት ይምረጡ', // Select type
                               style: TextStyle(fontSize: 14),
                             ),
                             isExpanded: true,
@@ -316,7 +318,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                             },
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Required';
+                                return 'አስፈላጊ ነው'; // Required
                               }
                               return null;
                             },
@@ -326,7 +328,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                     ),
                   ),
 
-                  // Important Note
+                  // ጠቃሚ ማስታወሻ (Important Note)
                   Container(
                     padding: const EdgeInsets.all(12),
                     margin: const EdgeInsets.only(bottom: 24),
@@ -343,7 +345,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            'The serial number is used for campus security verification. Ensure it matches the physical sticker.',
+                            'ተከታታይ ቁጥሩ ለካምፓስ ደህንነት ማረጋገጫ ይጠቅማል። በላፕቶፑ ላይ ካለው ተለጣፊ ቁጥር ጋር የሚመሳሰል መሆኑን ያረጋግጡ።',
                             style: TextStyle(
                               color: Colors.blue[900],
                               fontSize: 12,
@@ -354,7 +356,6 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                     ),
                   ),
 
-                  // Register Button
                   SizedBox(
                     width: double.infinity,
                     height: 48,
@@ -381,7 +382,7 @@ class _RegisterStudentPageState extends State<RegisterStudentPage> {
                                 Icon(Icons.person_add_alt_1, size: 18),
                                 SizedBox(width: 8),
                                 Text(
-                                  'REGISTER STUDENT',
+                                  'ተማሪ መዝግብ', // REGISTER STUDENT
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,

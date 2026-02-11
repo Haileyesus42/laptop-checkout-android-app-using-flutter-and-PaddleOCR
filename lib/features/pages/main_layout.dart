@@ -15,15 +15,14 @@ class _MainLayoutState extends State<MainLayout> {
   int _currentIndex = 1; // Start with Camera as default (middle)
   final PageController _pageController = PageController(initialPage: 1);
 
-  // Page titles corresponding to each index
+  // Page titles in Amharic for the AppBar
   final List<String> _pageTitles = [
-    'Register Student',
-    'Scan Laptop',
-    'History',
-    'Profile'
+    'ተማሪ መመዝገብ', // Register Student
+    'ላፕቶፕ ቃኝ', // Scan Laptop
+    'ታሪክ', // History
+    'መገለጫ', // Profile
   ];
 
-  // List of pages (4 items)
   final List<Widget> _pages = [
     const RegisterStudentPage(), // index 0
     const CameraPage(), // index 1
@@ -34,9 +33,7 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   void initState() {
     super.initState();
-    // Initialize the page controller with the correct initial page
     _pageController.addListener(() {
-      // Ensure we don't go out of bounds
       if (_pageController.page != null) {
         final page = _pageController.page!.round();
         if (page >= 0 && page < _pages.length) {
@@ -63,14 +60,12 @@ class _MainLayoutState extends State<MainLayout> {
   }
 
   void _onItemTapped(int index) {
-    // Only allow bottom nav items (0-2)
     if (index >= 0 && index <= 2) {
       _pageController.jumpToPage(index);
     }
   }
 
   void _openProfile() {
-    // Jump to Profile page (index 3)
     _pageController.jumpToPage(3);
   }
 
@@ -152,7 +147,7 @@ class _MainLayoutState extends State<MainLayout> {
                   ),
                   const SizedBox(height: 16),
                   const Text(
-                    'BIT Campus Security',
+                    'BIT ካምፓስ ደህንነት', // BIT Campus Security
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -161,7 +156,7 @@ class _MainLayoutState extends State<MainLayout> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Laptop Verification System',
+                    'የላፕቶፕ ማረጋገጫ ሥርዓት', // Laptop Verification System
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.8),
                       fontSize: 14,
@@ -178,7 +173,7 @@ class _MainLayoutState extends State<MainLayout> {
                     : const Color(0xFF003366).withOpacity(0.7),
               ),
               title: Text(
-                'Register Student',
+                'ተማሪ መመዝገብ', // Register Student
                 style: TextStyle(
                   color: _currentIndex == 0
                       ? const Color(0xFF003366)
@@ -200,7 +195,7 @@ class _MainLayoutState extends State<MainLayout> {
                     : const Color(0xFF003366).withOpacity(0.7),
               ),
               title: Text(
-                'Scan Laptop',
+                'ላፕቶፕ ቃኝ', // Scan Laptop
                 style: TextStyle(
                   color: _currentIndex == 1
                       ? const Color(0xFF003366)
@@ -222,7 +217,7 @@ class _MainLayoutState extends State<MainLayout> {
                     : const Color(0xFF003366).withOpacity(0.7),
               ),
               title: Text(
-                'History',
+                'ታሪክ', // History
                 style: TextStyle(
                   color: _currentIndex == 2
                       ? const Color(0xFF003366)
@@ -245,7 +240,7 @@ class _MainLayoutState extends State<MainLayout> {
                     : const Color(0xFF003366).withOpacity(0.7),
               ),
               title: Text(
-                'Profile',
+                'መገለጫ', // Profile
                 style: TextStyle(
                   color: _currentIndex == 3
                       ? const Color(0xFF003366)
@@ -262,13 +257,17 @@ class _MainLayoutState extends State<MainLayout> {
             ListTile(
               leading: const Icon(Icons.help_outline_rounded,
                   color: Color(0xFF003366)),
-              title: const Text('Help & Support'),
+              title: const Text(
+                'እገዛ እና ድጋፍ', // Help & Support
+              ),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.description_rounded,
                   color: Color(0xFF003366)),
-              title: const Text('Policies'),
+              title: const Text(
+                'ፖሊሲዎች', // Policies
+              ),
               onTap: () {},
             ),
           ],
@@ -302,7 +301,7 @@ class _MainLayoutState extends State<MainLayout> {
               Expanded(
                 child: _buildBottomBarItem(
                   icon: Icons.person_add_alt_1_rounded,
-                  label: 'Add Student',
+                  label: 'ተማሪ መዝግብ', // Add Student / Register Student
                   index: 0,
                   isActive: _currentIndex == 0,
                 ),
@@ -347,7 +346,7 @@ class _MainLayoutState extends State<MainLayout> {
               Expanded(
                 child: _buildBottomBarItem(
                   icon: Icons.history_rounded,
-                  label: 'History',
+                  label: 'ታሪክ', // History
                   index: 2,
                   isActive: _currentIndex == 2,
                 ),
